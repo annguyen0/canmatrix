@@ -11,6 +11,7 @@ environment:
     - TOXENV: py36
     - TOXENV: py37
     - TOXENV: py38
+    - TOXENV: py39
     - TOXENV: pypy3
 
 matrix:
@@ -36,6 +37,10 @@ build_script:
   - tox
   - tox -e codecov
 
+test_script:
+  # run tests
+  - "tox -e appveyor"
+  
 artifacts:
   - path: "dist\\*"
 

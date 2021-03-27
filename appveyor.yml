@@ -35,11 +35,9 @@ install:
 
 build_script:
   - tox
+  - tox -e appveyor
   - tox -e codecov
 
-test_script:
-  # run tests
-  - "tox -e appveyor"
   
 artifacts:
   - path: "dist\\*"

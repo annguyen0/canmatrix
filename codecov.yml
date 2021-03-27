@@ -1,5 +1,6 @@
 # Validate with curl --data-binary @.codecov.yml https://codecov.io/validate
 codecov:
+  token: 7259f8b2-7cfe-476f-9278-b9ec3d711006
   archive:
     uploads: yes
 

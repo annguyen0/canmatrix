@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-
-from canmatrix.join
+import canmatrix.join
 import decimal
 
 def test_list_pgn():

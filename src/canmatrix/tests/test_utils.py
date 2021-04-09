@@ -40,3 +40,9 @@ def test_decode_number():
 )
 def test_quote_aware_comma_split_function(input_string, expected_list):
     assert canmatrix.utils.quote_aware_comma_split(input_string) == expected_list
+
+def test_quote_aware_comma_split():
+    example = '"a,b", c"d,e", f'
+    split = canmatrix.utils.quote_aware_comma_split(example)
+    assert split == ['a,b', 'c"d,e"', 'f']
+

@@ -398,3 +398,26 @@ Var=VarMux200 unsigned 48,8
     r = frame.decode(data)
     assert var_name in r.keys(), "Signal {}, not decoded. Only : {}".format(var_name, ','.join(r for r in r.keys()))
     assert r[var_name].raw_value == raw_value
+
+def tests_parsing_errors():
+    f = io.BytesIO(
+      textwrap.dedent(
+            '''\
+            FormatVersion=5.0 // Do not edit this line!
+            Title="a file"
+            {SEND}
+            [pass]
+            DLC=8
+            Var=Password unsigned 16,a16
+            '''
+          ).encode('utf-8'),
+    )
+
+    matrix = canmatrix.formats.sym.load(f)
+
+    [error] = matrix.load_errors
+
+    assert isinstance(error, canmatrix.formats.sym.ParsingError)
+
+    if sys.version_info >= (3, 5):
+        assert isinstance(error.original, traceback.TracebackException)
